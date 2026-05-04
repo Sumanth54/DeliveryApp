@@ -6,13 +6,14 @@ import { env } from "./config/env.js";
 import { errorHandler, notFoundHandler } from "./middleware/errorHandler.js";
 import { apiRouter } from "./routes/index.js";
 
-export const app = express();
+const app = express();
 
 app.use(
   cors({
     origin: env.clientUrl
   })
 );
+
 app.use(express.json());
 
 app.get("/health", (_request, response) => {
@@ -40,3 +41,5 @@ app.get("/health/live", (_request, response) => {
 app.use("/api", apiRouter);
 app.use(notFoundHandler);
 app.use(errorHandler);
+
+export default app; // ✅ THIS FIXES YOUR ISSUE

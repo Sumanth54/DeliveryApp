@@ -1,4 +1,4 @@
-import { app } from "./app.js";
+import  app  from "./app.js";
 import { connectCache, disconnectCache } from "./config/cache.js";
 import { connectDatabase, disconnectDatabase } from "./config/database.js";
 import { env } from "./config/env.js";
