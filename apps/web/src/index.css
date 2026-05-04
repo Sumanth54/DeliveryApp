@@ -1,0 +1,25 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: "Manrope", sans-serif;
+  }
+
+  body {
+    @apply bg-stone-50 text-slate antialiased;
+    background-image:
+      radial-gradient(circle at top right, rgba(34, 197, 94, 0.12), transparent 24%),
+      radial-gradient(circle at left 15%, rgba(245, 158, 11, 0.1), transparent 18%);
+  }
+
+  button,
+  input,
+  textarea,
+  select {
+    @apply outline-none;
+  }
+}
