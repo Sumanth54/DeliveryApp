@@ -6,6 +6,7 @@ let memoryServer: MongoMemoryServer | null = null;
 let connectedUri: string | null = null;
 
 export async function connectDatabase() {
+  console.log("ENV MONGODB_URI:", process.env.MONGODB_URI);
   if (mongoose.connection.readyState === 1) {
     return mongoose.connection;
   }
