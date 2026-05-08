@@ -131,4 +131,4 @@ export function useCart() {
     }),
     [actions, state]
   );
-  };
+}
