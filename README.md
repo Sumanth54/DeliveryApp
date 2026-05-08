@@ -82,12 +82,3 @@ The seeded admin phone number is `9876500000` and the mock OTP is `123456`.
 npm run build
 ```
 
-## Vercel deployment
-
-Use Vercel only for the frontend app in this repo.
-
-- This repo now includes [vercel.json](/Users/sumanths/Desktop/DeliveryApp/vercel.json) so a root deployment builds `apps/web` and serves the Vite output correctly.
-- If your Vercel project Root Directory is set to `apps/web`, Vercel will use [apps/web/vercel.json](/Users/sumanths/Desktop/DeliveryApp/apps/web/vercel.json) instead. In that setup, the build command is just `npm run build`.
-- Set `VITE_API_URL` in Vercel to your deployed backend URL, for example `https://your-api.onrender.com/api`.
-- Because the backend is an Express server with MongoDB, deploy `apps/api` separately on Render, Railway, Fly.io, or AWS. Do not expect the current API to run as a Vercel static site.
-- The rewrite rule in `vercel.json` is required so routes like `/cart`, `/orders`, and `/admin` load correctly after refresh.
