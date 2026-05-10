@@ -1,6 +1,17 @@
 import type { Address, Order, PaymentIntent, Product, User } from "../types";
 
-const API_BASE_URL = import.meta.env.VITE_API_URL ?? "http://localhost:4000/api";
+function normalizeApiBaseUrl(rawUrl?: string) {
+  const fallbackUrl = "http://localhost:4000/api";
+
+  if (!rawUrl) {
+    return fallbackUrl;
+  }
+
+  const normalizedUrl = rawUrl.replace(/\/+$/, "");
+  return normalizedUrl.endsWith("/api") ? normalizedUrl : `${normalizedUrl}/api`;
+}
+
+const API_BASE_URL = normalizeApiBaseUrl(import.meta.env.VITE_API_URL);
 
 type RequestOptions = RequestInit & {
   token?: string | null;
