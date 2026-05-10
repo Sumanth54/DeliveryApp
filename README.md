@@ -82,3 +82,13 @@ The seeded admin phone number is `9876500000` and the mock OTP is `123456`.
 npm run build
 ```
 
+## Vercel deployment
+
+Deploy the frontend as a separate Vercel project with:
+
+- Root Directory: `apps/web`
+- Install Command: `npm install`
+- Build Command: `npm run build`
+- Output Directory: `dist`
+
+The frontend reads the backend URL from `VITE_API_URL`. Set that environment variable in Vercel to your deployed API base URL, for example `https://your-api.example.com/api`.
