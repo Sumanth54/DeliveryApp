@@ -8,15 +8,24 @@ export function HomePage() {
   const { addToCart } = useCart();
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
   const [search, setSearch] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
 
   useEffect(() => {
     async function loadProducts() {
       setLoading(true);
-      const data = await api.getProducts(selectedCategory, search);
-      setProducts(data);
-      setLoading(false);
+      setError("");
+
+      try {
+        const data = await api.getProducts(selectedCategory, search);
+        setProducts(data);
+      } catch (loadError) {
+        setProducts([]);
+        setError(loadError instanceof Error ? loadError.message : "Failed to load products.");
+      } finally {
+        setLoading(false);
+      }
     }
 
     void loadProducts();
@@ -83,6 +92,10 @@ export function HomePage() {
       {loading ? (
         <div className="rounded-3xl border border-stone-200 bg-white p-8 text-center shadow-card">
           Loading products...
+        </div>
+      ) : error ? (
+        <div className="rounded-3xl border border-red-200 bg-red-50 p-8 text-center text-red-700 shadow-card">
+          {error}
         </div>
       ) : (
         <section className="grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
